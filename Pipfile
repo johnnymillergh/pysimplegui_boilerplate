@@ -42,8 +42,10 @@ tenacity = "==8.1.0"
 matplotlib = "==3.6.0"
 # Python GUIs for Humans. https://github.com/PySimpleGUI/PySimpleGUI
 pysimplegui = "==4.60.3"
+event-bus = "==1.0.2"
 
 [dev-packages]
+pyinstaller = "==5.4.1"
 # Black is the uncompromising Python code formatter. By using it, you agree to cede control over minutiae of
 # hand-formatting. https://pypi.org/project/black/
 black = "==22.8.0"
