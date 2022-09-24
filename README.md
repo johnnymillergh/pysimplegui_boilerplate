@@ -120,13 +120,27 @@ $ python3 -m pysimplegui_boilerplate
 $ PYTHONPATH="${PYTHONPATH}:/Users/johnny/Projects/PyCharmProjects/pysimplegui_boilerplate/pysimplegui_boilerplate" python3 pysimplegui_boilerplate/__main__.py
 ```
 
-### ~~Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)~~
+### Package with [PyInstaller](https://pyinstaller.org/en/latest/usage.html?highlight=pythonpath#using-pyinstaller)
+
+> **WANRING**
+>
+> Need to call `freeze_support()` immediately when startup in `pysimplegui_boilerplate/__init__.py`
+>
+> ```python
+> from multiprocessing import freeze_support
+>
+> freeze_support()
+> ```
+>
+> - [Pyinstaller multiprocessing name of process is always "MainProcess" #3957](https://github.com/pyinstaller/pyinstaller/issues/3957#issuecomment-674579877)
+> - [pyinstaller linux binary is getting restarted again and again #4190](https://github.com/pyinstaller/pyinstaller/issues/4190)
 
 ```shell
-$ pipenv run pyinstaller --console \
+$ pipenv run pyinstaller --windowed --noconsole \
+--add-data "setup.cfg:." \
 --add-data "pysimplegui_boilerplate/resources/*:pysimplegui_boilerplate/resources" \
---name main \
---clean --noconfirm pysimplegui_boilerplate/demo/pandas_usage.py
+--name pysimplegui_boilerplate-main \
+--clean --noconfirm pysimplegui_boilerplate/__main__.py
 ```
 
 ### Run Unit Tests
