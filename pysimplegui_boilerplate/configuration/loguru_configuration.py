@@ -5,7 +5,9 @@ import sys
 from loguru import logger
 
 from pysimplegui_boilerplate.common.common_function import get_data_dir, get_module_name
-from pysimplegui_boilerplate.configuration.application_configuration import application_conf
+from pysimplegui_boilerplate.configuration.application_configuration import (
+    application_conf,
+)
 
 _message_format = (
     "<green>{time:YYYY-MM-DD HH:mm:ss.SSS}</green> | "
@@ -19,9 +21,9 @@ _message_format = (
 logger.remove(handler_id=None)
 # Set up logging for log file
 _log_file = (
-        str(get_data_dir("logs"))
-        + f"/{get_module_name()}.{platform.node()}."
-        + "{time}.log"
+    str(get_data_dir("logs"))
+    + f"/{get_module_name()}.{platform.node()}."
+    + "{time}.log"
 )
 log_level = application_conf.get_string("log_level")
 logger.add(

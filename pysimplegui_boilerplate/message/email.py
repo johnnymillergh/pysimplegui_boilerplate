@@ -7,7 +7,9 @@ from email.mime.text import MIMEText
 from loguru import logger
 
 from pysimplegui_boilerplate.common.debounce_throttle import debounce
-from pysimplegui_boilerplate.configuration.application_configuration import application_conf
+from pysimplegui_boilerplate.configuration.application_configuration import (
+    application_conf,
+)
 from pysimplegui_boilerplate.template.html_template import render_template
 
 _email_muted: bool = application_conf.get_bool("email.muted")

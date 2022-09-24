@@ -8,7 +8,10 @@ from loguru import logger
 from pandas import DataFrame, DatetimeIndex, Series
 
 from pysimplegui_boilerplate.common.asynchronization import async_function
-from pysimplegui_boilerplate.common.common_function import get_data_dir, get_resources_dir
+from pysimplegui_boilerplate.common.common_function import (
+    get_data_dir,
+    get_resources_dir,
+)
 from pysimplegui_boilerplate.common.profiling import elapsed_time
 from pysimplegui_boilerplate.common.trace import trace
 

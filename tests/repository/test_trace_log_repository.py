@@ -1,5 +1,8 @@
 from pysimplegui_boilerplate.repository.model.trace_log import TraceLog
-from pysimplegui_boilerplate.repository.trace_log_repository import retain_trace_log, save
+from pysimplegui_boilerplate.repository.trace_log_repository import (
+    retain_trace_log,
+    save,
+)
 
 
 def test_save() -> None:
