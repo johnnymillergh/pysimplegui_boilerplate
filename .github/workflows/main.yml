@@ -34,10 +34,6 @@ jobs:
       - name: Python Tests with pytest
         run: pipenv run pytest --cov --cov-fail-under=85 --capture=no --log-cli-level=INFO -n auto
       - name: Build Application Executable Package with PyInstaller
-        run: pipenv run pyinstaller --windowed --noconsole \
-          --add-data "setup.cfg:." \
-          --add-data "pysimplegui_boilerplate/resources/*:pysimplegui_boilerplate/resources" \
-          --name pysimplegui_boilerplate-main \
-          --clean --noconfirm pysimplegui_boilerplate/__main__.py
+        run: pipenv run pyinstaller --windowed --noconsole --add-data "setup.cfg:." --add-data "pysimplegui_boilerplate/resources/*:pysimplegui_boilerplate/resources" --name pysimplegui_boilerplate-main --clean --noconfirm pysimplegui_boilerplate/__main__.py
       - name: Display Built Artifacts
         run: ls -lh dist/
