@@ -9,11 +9,9 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/johnnymillergh/pysimplegui_boilerplate.svg)](https://github.com/johnnymillergh/pysimplegui_boilerplate)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/johnnymillergh/pysimplegui_boilerplate?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fjohnnymillergh%2Fpython_kivymd_boilerplate)
 
-# Python Boilerplate
+# PySimpleGUI Boilerplate
 
-**pysimplegui_boilerplate** is a boilerplate project for Python. Based on template [sourcery-ai/python-best-practices-cookiecutter](https://github.com/sourcery-ai/python-best-practices-cookiecutter).
-
-[Official Docker Image](https://github.com/johnnymillergh/pysimplegui_boilerplate/pkgs/container/pysimplegui_boilerplate%2Fpython_kivymd_boilerplate)
+**pysimplegui_boilerplate** is a boilerplate project for Python with PySimpleGUI. Based on template [sourcery-ai/python-best-practices-cookiecutter](https://github.com/sourcery-ai/python-best-practices-cookiecutter).
 
 ## Features
 
@@ -25,37 +23,43 @@ Here is the highlights of **pysimplegui_boilerplate**:
 
    `Pipenv` is to build and compile the project.
 
-2. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
+   `PySimpleGUI` - [![PySimpleGUI](https://img.shields.io/badge/PySimpleGUI-v4.60.3-blue)](https://github.com/PySimpleGUI/PySimpleGUI/releases/tag/4.60.3)
 
-3. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database.
+2. [Event Bus](https://github.com/seanpar203/event-bus) to handle GUI events.
 
-4. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity).
+3. [PyInstaller](https://github.com/pyinstaller/pyinstaller) to build executable package for macOS and Windows platform.
 
-5. Environment variable and configuration with [pyhocon](https://pythonhosted.org/pyhocon/_modules/pyhocon.html). Read `${ENVIRONMENT_VARIABLE}` when startup.
+4. Highly customizable data analysis with [pandas](https://pandas.pydata.org/), enhanced array operation with [NumPy](https://numpy.org/). Supports CSV, excel, JSON and so on.
 
-6. Sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times and timestamps with [Arrow](https://pypi.org/project/arrow/).
+5. Data persistence with [peewee](http://docs.peewee-orm.com/en/latest/), [SQLite3](https://sqlite.org/index.html) as local database.
 
-7. Generate fake data with [Faker](https://pypi.org/project/Faker/).
+6. Simple and flexible retry with [Tenacity](https://github.com/jd/tenacity).
 
-8. Customized function decorator `@async_function` to enable function to run asynchronously; `@peewee_table` class decorator to register ORM tables; `@elapsed_time(level="INFO")` to profile a function elapsed time.
+7. Environment variable and configuration with [pyhocon](https://pythonhosted.org/pyhocon/_modules/pyhocon.html). Read `${ENVIRONMENT_VARIABLE}` when startup.
 
-9. Testing with [pytest](https://docs.pytest.org/en/latest/), integrating [pytest-mock](https://pypi.org/project/pytest-mock/) for mocking, [pytest-cov](https://pypi.org/project/pytest-cov/) for code coverage analysis and [pyinstrument](https://github.com/joerick/pyinstrument) for Python stack profiler.
+8. Sensible and human-friendly approach to creating, manipulating, formatting and converting dates, times and timestamps with [Arrow](https://pypi.org/project/arrow/).
 
-10. Formatting with [black](https://github.com/psf/black).
+9. Generate fake data with [Faker](https://pypi.org/project/Faker/).
 
-11. Import sorting with [isort](https://github.com/timothycrosley/isort).
+10. Customized function decorator `@async_function` to enable function to run asynchronously; `@peewee_table` class decorator to register ORM tables; `@elapsed_time(level="INFO")` to profile a function elapsed time.
 
-12. Static typing with [mypy](http://mypy-lang.org/).
+11. Testing with [pytest](https://docs.pytest.org/en/latest/), integrating [pytest-mock](https://pypi.org/project/pytest-mock/) for mocking, [pytest-cov](https://pypi.org/project/pytest-cov/) for code coverage analysis and [pyinstrument](https://github.com/joerick/pyinstrument) for Python stack profiler.
 
-13. Linting with [flake8](http://flake8.pycqa.org/en/latest/).
+12. Formatting with [black](https://github.com/psf/black).
 
-14. Git hooks that run all the above with [pre-commit](https://pre-commit.com/).
+13. Import sorting with [isort](https://github.com/timothycrosley/isort).
 
-15. Deployment ready with [Docker](https://docker.com/).
+14. Static typing with [mypy](http://mypy-lang.org/).
 
-16. Continuous Integration with [GitHub Actions](https://github.com/features/actions).
+15. Linting with [flake8](http://flake8.pycqa.org/en/latest/).
 
-17. Loguru logging configuration. Log sample is like,
+16. Git hooks that run all the above with [pre-commit](https://pre-commit.com/).
+
+17. Deployment ready with [Docker](https://docker.com/).
+
+18. Continuous Integration with [GitHub Actions](https://github.com/features/actions).
+
+19. [Loguru](https://github.com/Delgan/loguru) logging configuration. Log sample is like,
 
    ```
    2022-09-17 14:13:52.385 | ⚠️ WARNING  | 6860 | MainThread      | pysimplegui_boilerplate.repository.model.base_model.<module>:24 - SQLite database created. Path: [/Users/johnny/Projects/PyCharmProjects/pysimplegui_boilerplate/data/pysimplegui_boilerplate.db], <peewee.SqliteDatabase object at 0x1191e1390>
@@ -206,4 +210,4 @@ Inspired by [How to set up a perfect Python project](https://sourcery.ai/blog/py
 
 [Apache License](https://github.com/johnnymillergh/pysimplegui_boilerplate/blob/master/LICENSE) © Johnny Miller
 
-2021 - Present
+2022 - Present

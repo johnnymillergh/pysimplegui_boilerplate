@@ -42,6 +42,7 @@ tenacity = "==8.1.0"
 matplotlib = "==3.6.0"
 # Python GUIs for Humans. https://github.com/PySimpleGUI/PySimpleGUI
 pysimplegui = "==4.60.3"
+# A simple python event bus. https://github.com/seanpar203/event-bus
 event-bus = "==1.0.2"
 
 [dev-packages]
