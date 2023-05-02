@@ -1,20 +1,24 @@
 from concurrent.futures import Future, ThreadPoolExecutor
+from typing import Any
 
 from loguru import logger
 
-from pysimplegui_boilerplate.common.common_function import get_cpu_count
+from pysimplegui_boilerplate.common.common_function import (
+    get_cpu_count,
+    get_module_name,
+)
 from pysimplegui_boilerplate.common.profiling import elapsed_time
 
 # Thread Concurrency Visualization https://www.jetbrains.com/help/pycharm/thread-concurrency-visualization.html
 
-
+# Set the default max number of concurrent threads = 2 x CPU cores
 max_workers = 2 * get_cpu_count()
 executor: ThreadPoolExecutor = ThreadPoolExecutor(
-    max_workers=max_workers, thread_name_prefix="my_thread_pool"
+    max_workers=max_workers, thread_name_prefix=f"{get_module_name()}_thread"
 )
 
 
-def done_callback(future: Future):
+def done_callback(future: Future[Any]) -> None:
     """
     The default callback for Future once it's done. This function must be called after submitting a Future, to prevent
     the ThreadPoolExecutor swallows exception in other threads.

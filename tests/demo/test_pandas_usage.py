@@ -3,7 +3,7 @@ from typing import Hashable, Iterable
 
 import numpy as np
 from loguru import logger
-from pandas import DatetimeIndex, Series
+from pandas import DataFrame, DatetimeIndex, Series
 
 from pysimplegui_boilerplate.common.profiling import (
     cpu_profile,
@@ -72,8 +72,8 @@ def test_pandas_reading_csv() -> None:
 @elapsed_time("INFO")
 @mem_profile("INFO")
 @cpu_profile("INFO")
-def test_look_for_sony_published_games():
-    sony_published_games = look_for_sony_published_games()
+def test_look_for_sony_published_games() -> None:
+    sony_published_games: DataFrame = look_for_sony_published_games()
     assert sony_published_games is not None
     assert len(sony_published_games) == 9
     assert Path(sony_published_video_games_path).exists(), "CSV file NOT exists!"
@@ -82,7 +82,7 @@ def test_look_for_sony_published_games():
 @elapsed_time("INFO")
 @mem_profile("INFO")
 @cpu_profile("INFO")
-def test_data_generation():
+def test_data_generation() -> None:
     try:
         data_generation()
     except Exception as ex:

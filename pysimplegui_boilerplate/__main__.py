@@ -13,9 +13,6 @@ from pysimplegui_boilerplate.configuration.application_configuration import (
     configure as configure_application,
 )
 from pysimplegui_boilerplate.configuration.application_configuration import setup_cfg
-from pysimplegui_boilerplate.configuration.event_bus_configuration import (
-    configure as configure_event_bus,
-)
 from pysimplegui_boilerplate.configuration.loguru_configuration import (
     configure as configure_loguru,
 )
@@ -28,7 +25,6 @@ from pysimplegui_boilerplate.configuration.thread_pool_configuration import (
 from pysimplegui_boilerplate.configuration.thread_pool_configuration import (
     configure as configure_thread_pool,
 )
-from pysimplegui_boilerplate.demo.hello_pysimplegui_window import show
 from pysimplegui_boilerplate.message.email import __init__
 from pysimplegui_boilerplate.message.email import cleanup as email_cleanup
 from pysimplegui_boilerplate.repository.model.startup_log import StartupLog
@@ -42,7 +38,7 @@ from pysimplegui_boilerplate.repository.trace_log_repository import retain_trace
 __start_time = time.perf_counter()
 
 
-def startup():
+def startup() -> None:
     """
     Call this function to start the application and do all the preparations and configurations.
     """
@@ -56,7 +52,6 @@ def startup():
     configure_loguru()
     configure_peewee()
     configure_thread_pool()
-    configure_event_bus()
 
     # Initialization
     __init__()
@@ -97,7 +92,6 @@ def main() -> None:
     Main function.
     """
     logger.info(f"Current module: {get_module_name()}")
-    show()
 
 
 if __name__ == "__main__":

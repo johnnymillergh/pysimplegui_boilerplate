@@ -1,13 +1,14 @@
 from datetime import datetime
+from typing import Any
 
 import PySimpleGUI as sg
 from loguru import logger
-from PySimpleGUI import Window
+from PySimpleGUI import Element, Window
 
 from pysimplegui_boilerplate.configuration.event_bus_configuration import event_bus
 
 
-def show():
+def show() -> None:
     sg.theme("PythonPlus")
     # Inject the layout to the window
     window = sg.Window("Window Title", layout(datetime.now()))
@@ -23,7 +24,7 @@ def show():
     window.close()
 
 
-def layout(date: datetime):
+def layout(date: datetime) -> list[list[Element]]:
     return [
         [sg.Text(f"What's your name? {date}")],
         [sg.Input(key="-INPUT-")],
@@ -33,7 +34,7 @@ def layout(date: datetime):
 
 
 @event_bus.on("OK")
-def on_ok_event(values: dict, window: Window):
+def on_ok_event(values: dict[str, Any], window: Window) -> None:
     logger.info(f"On OK event: {values}")
     # Output a message to the window
     window["-OUTPUT-TEXT-"].update(
