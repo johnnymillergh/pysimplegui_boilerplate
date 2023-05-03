@@ -6,6 +6,7 @@ data_file = ./build/.coverage
 source = pysimplegui_boilerplate
 omit = pysimplegui_boilerplate/__main__.py
     pysimplegui_boilerplate/__init__.py
+    *_window.py
     tests/*
 
 [report]

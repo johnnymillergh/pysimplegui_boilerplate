@@ -3,11 +3,14 @@ from email.header import Header
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from typing import Any
 
 from loguru import logger
 
 from pysimplegui_boilerplate.common.debounce_throttle import debounce
-from pysimplegui_boilerplate.configuration.application_configuration import application_conf
+from pysimplegui_boilerplate.configuration.application_configuration import (
+    application_conf,
+)
 from pysimplegui_boilerplate.template.html_template import render_template
 
 _email_muted: bool = application_conf.get_bool("email.muted")
@@ -41,7 +44,7 @@ def build_message(
     subject: str,
     receiver: str,
     template_name: str,
-    render_dict: dict,
+    render_dict: dict[str, Any],
     picture_path: str,
 ) -> MIMEMultipart:
     """
@@ -74,7 +77,7 @@ def build_message(
 
 @debounce(10)
 def send_email(
-    subject: str, template_name: str, render_dict: dict, picture_path: str
+    subject: str, template_name: str, render_dict: dict[str, Any], picture_path: str
 ) -> None:
     """
     Sends an email with the given subject, template name and render dict.

@@ -7,10 +7,18 @@ from faker import Faker
 from loguru import logger
 from pandas import DataFrame, DatetimeIndex, Series
 
+from pysimplegui_boilerplate.__main__ import startup
 from pysimplegui_boilerplate.common.asynchronization import async_function
-from pysimplegui_boilerplate.common.common_function import get_data_dir, get_resources_dir
-from pysimplegui_boilerplate.common.profiling import elapsed_time
-from pysimplegui_boilerplate.common.trace import trace
+from pysimplegui_boilerplate.common.common_function import (
+    get_data_dir,
+    get_resources_dir,
+)
+from pysimplegui_boilerplate.common.profiling import (
+    cpu_profile,
+    elapsed_time,
+    mem_profile,
+)
+from pysimplegui_boilerplate.common.trace import async_trace
 
 # 10 minutes to pandas https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html#minutes-to-pandas
 # CSV & text files https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-read-csv-table
@@ -35,8 +43,10 @@ def pandas_data_structure_date_range() -> DatetimeIndex:
     return pd.date_range("2022-01-01", periods=6)
 
 
-@trace
+@async_trace
 @elapsed_time("INFO")
+@mem_profile("INFO")
+@cpu_profile("INFO")
 def look_for_sony_published_games() -> DataFrame:
     all_columns = set(video_games)
     selected_columns = {
@@ -65,7 +75,7 @@ def look_for_sony_published_games() -> DataFrame:
         .count()
         .sort_values(ascending=False)
     )
-    for item in game_release_each_year.iteritems():
+    for item in game_release_each_year.items():
         logger.info(f"Sony released {item[1]} games in {item[0]}")
     sony_published.to_csv(sony_published_video_games_path, index=False)
     return sony_published
@@ -92,7 +102,7 @@ def generate_random_data(row_count: int) -> DataFrame:
 # noinspection PyTypeChecker
 @elapsed_time("DEBUG")
 def submit_parallel_tasks() -> list[DataFrame]:
-    futures: list[Future] = []
+    futures: list[Future[DataFrame]] = []
     for _ in range(5):
         futures.append(generate_random_data(5000))
     wait(futures)
@@ -110,9 +120,9 @@ def merge_results(dataframes: list[DataFrame]) -> DataFrame:
     return result_list
 
 
-def data_generation():
-    futures = submit_parallel_tasks()
-    result_data_pd: DataFrame = merge_results(futures)
+def data_generation() -> None:
+    future_results: list[DataFrame] = submit_parallel_tasks()
+    result_data_pd: DataFrame = merge_results(future_results)
     logger.info(f"Finished merging data\n{result_data_pd}")
     random_data_path = get_data_dir() / "random_data.csv"
     result_data_pd.to_csv(random_data_path, index=False)
@@ -122,4 +132,5 @@ def data_generation():
 
 
 if __name__ == "__main__":
+    startup()
     look_for_sony_published_games()

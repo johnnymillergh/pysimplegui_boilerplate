@@ -23,14 +23,12 @@ loging_logger: Final = logging.getLogger(__name__)
 # https://jamesfheath.com/2020/07/python-library-tenacity.html
 
 
-@trace
 @retry(stop=stop_after_attempt(3), after=after_log(loging_logger, WARNING))
 def exception_function_1() -> None:
     logger.warning("Mocking failure 1")
     raise RuntimeError("Failure message 1")
 
 
-@trace
 @retry(
     stop=stop_after_attempt(3), wait=wait_fixed(2), after=after_log(loging_logger, INFO)
 )
