@@ -5,7 +5,10 @@ import PySimpleGUI as sg
 from loguru import logger
 from PySimpleGUI import Element, Window
 
+from pysimplegui_boilerplate.__main__ import startup
 from pysimplegui_boilerplate.configuration.event_bus_configuration import event_bus
+
+# https://www.pysimplegui.org/en/latest/
 
 
 def show() -> None:
@@ -40,3 +43,8 @@ def on_ok_event(values: dict[str, Any], window: Window) -> None:
     window["-OUTPUT-TEXT-"].update(
         f"Hello {values['-INPUT-']}! Thanks for trying PySimpleGUI"
     )
+
+
+if __name__ == "__main__":
+    startup()
+    show()
