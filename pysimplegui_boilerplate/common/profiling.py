@@ -2,7 +2,7 @@ import functools
 import os
 import time
 from datetime import timedelta
-from typing import Any, Callable, TypeVar
+from typing import Any, Callable, Coroutine, TypeVar
 
 import psutil
 from loguru import logger
@@ -33,9 +33,20 @@ def elapsed_time(level: str = "INFO") -> Callable[..., Callable[..., R]]:
 
     def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg: Any, **kwarg: Any) -> Any:
+        def wrapper(*arg: Any, **kwarg: Any) -> Any:
             start_time = time.perf_counter()
-            return_value = func(*arg, **kwarg)
+            try:
+                return_value = func(*arg, **kwarg)
+            except Exception as e:
+                logger.exception(
+                    f"Exception raised when executing function: {func.__qualname__}(). Exception: {e}"
+                )
+                elapsed = time.perf_counter() - start_time
+                logger.log(
+                    level,
+                    f"{func.__qualname__}() -> elapsed time: {timedelta(seconds=elapsed)}",
+                )
+                raise e
             elapsed = time.perf_counter() - start_time
             logger.log(
                 level,
@@ -43,7 +54,57 @@ def elapsed_time(level: str = "INFO") -> Callable[..., Callable[..., R]]:
             )
             return return_value
 
-        return wrapped
+        return wrapper
+
+    return decorator
+
+
+def async_elapsed_time(
+    level: str = "INFO",
+) -> Callable[..., Callable[..., Coroutine[Any, Any, R]]]:
+    """
+    The decorator to monitor the elapsed time of an async function.
+
+    Usage:
+
+    * decorate the function with `@async_elapsed_time()` to profile the function with INFO log
+    >>> @async_elapsed_time()
+    >>> async def some_function():
+    >>>    pass
+
+    * decorate the function with `@async_elapsed_time("DEBUG")` to profile the function with DEBUG log
+    >>> @async_elapsed_time("DEBUG")
+    >>> async def some_function():
+    >>>    pass
+
+    https://stackoverflow.com/questions/12295974/python-decorators-just-syntactic-sugar
+
+    :param level: logging level, default is "INFO". Available values: ["TRACE", "DEBUG", "INFO", "WARNING", "ERROR"]
+    """
+
+    def decorator(
+        func: Callable[..., Coroutine[Any, Any, R]]
+    ) -> Callable[..., Coroutine[Any, Any, R]]:
+        @functools.wraps(func)
+        async def wrapper(*arg: Any, **kwarg: Any) -> Any:
+            start_time = time.perf_counter()
+            try:
+                return_value = await func(*arg, **kwarg)
+            except Exception as e:
+                elapsed = time.perf_counter() - start_time
+                logger.log(
+                    level,
+                    f"{func.__qualname__}() -> elapsed time: {timedelta(seconds=elapsed)}",
+                )
+                raise e
+            elapsed = time.perf_counter() - start_time
+            logger.log(
+                level,
+                f"{func.__qualname__}() -> elapsed time: {timedelta(seconds=elapsed)}",
+            )
+            return return_value
+
+        return wrapper
 
     return decorator
 
@@ -90,9 +151,18 @@ def mem_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
 
     def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg: Any, **kwarg: Any) -> Any:
+        def wrapper(*arg: Any, **kwarg: Any) -> Any:
             mem_before = get_memory_usage()
-            return_value = func(*arg, **kwarg)
+            try:
+                return_value = func(*arg, **kwarg)
+            except Exception as e:
+                mem_after = get_memory_usage()
+                logger.log(
+                    level,
+                    f"{func.__qualname__}() -> Mem before: {mem_before}, mem after: {mem_after}. "
+                    f"Consumed memory: {(mem_after - mem_before) / (1024 * 1024):.2f} MB",
+                )
+                raise e
             mem_after = get_memory_usage()
             logger.log(
                 level,
@@ -101,7 +171,7 @@ def mem_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
             )
             return return_value
 
-        return wrapped
+        return wrapper
 
     return decorator
 
@@ -129,9 +199,18 @@ def cpu_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
 
     def decorator(func: Callable[..., R]) -> Callable[..., R]:
         @functools.wraps(func)
-        def wrapped(*arg: Any, **kwarg: Any) -> Any:
+        def wrapper(*arg: Any, **kwarg: Any) -> Any:
             cpu_before = get_cpu_usage()
-            return_value = func(*arg, **kwarg)
+            try:
+                return_value = func(*arg, **kwarg)
+            except Exception as e:
+                cpu_after = get_cpu_usage()
+                logger.log(
+                    level,
+                    f"{func.__qualname__}() -> CPU before: {cpu_before}, CPU after: {cpu_after}, "
+                    f"delta: {(cpu_after - cpu_before):.2f}",
+                )
+                raise e
             cpu_after = get_cpu_usage()
             logger.log(
                 level,
@@ -140,6 +219,6 @@ def cpu_profile(level: str = "INFO") -> Callable[..., Callable[..., R]]:
             )
             return return_value
 
-        return wrapped
+        return wrapper
 
     return decorator
