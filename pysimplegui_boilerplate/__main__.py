@@ -13,6 +13,9 @@ from pysimplegui_boilerplate.configuration.application_configuration import (
     configure as configure_application,
 )
 from pysimplegui_boilerplate.configuration.application_configuration import setup_cfg
+from pysimplegui_boilerplate.configuration.event_bus_configuration import (
+    configure as configure_event_bus,
+)
 from pysimplegui_boilerplate.configuration.loguru_configuration import (
     configure as configure_loguru,
 )
@@ -52,6 +55,7 @@ def startup() -> None:
     configure_loguru()
     configure_peewee()
     configure_thread_pool()
+    configure_event_bus()
 
     # Initialization
     __init__()
@@ -96,4 +100,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     startup()
-    main()
+    # main()
