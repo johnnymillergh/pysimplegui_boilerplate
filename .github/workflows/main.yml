@@ -47,11 +47,11 @@ jobs:
         run: |
           pipenv run pyinstaller --windowed --noconsole \
             --add-data "setup.cfg:." \
-            --add-data "pysimplegui_boilerplate/resources/*:pysimplegui_boilerplate/resources" \
-            --name pysimplegui_boilerplate-main \
-            --clean --noconfirm pysimplegui_boilerplate/__main__.py
+            --add-data "pysimplegui_boilerplate/resources/:pysimplegui_boilerplate/resources/" \
+            --name hello_pysimplegui_window \
+            --clean --noconfirm pysimplegui_boilerplate/demo/hello_pysimplegui_window.py
       - name: Display Built Artifacts
         run: |
           du -s -h *
-#      - name: Smoke Test PyInstaller Application
-#        run: ./dist/multithread_and_thread_pool_usage/multithread_and_thread_pool_usage
+      - name: Smoke Test PyInstaller Application (10 seconds timeout)
+        run: timeout 10 ./dist/hello_pysimplegui_window/hello_pysimplegui_window

@@ -43,8 +43,13 @@ logger.add(
     compression="gz",
     serialize=False,
 )
-# Override the default stderr (console)
-logger.add(sys.stderr, level=log_level, format=_message_format)
+stderr = sys.stderr
+if stderr is None:
+    logger.warning("Detected no-console mode")
+else:
+    # Override the default stderr (console) if console is available
+    logger.add(stderr, level=log_level, format=_message_format)
+    logger.warning("Detected console mode")
 
 
 class InterceptHandler(logging.Handler):
