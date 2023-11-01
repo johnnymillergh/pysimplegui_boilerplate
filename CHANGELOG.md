@@ -1,3 +1,13 @@
+# [2.0](https://github.com/johnnymillergh/pysimplegui_boilerplate/compare/1.0.0...2.0) (2023-11-01)
+
+
+### Features
+
+* **$PySimpleGUI:** run hello_pysimplegui_window.py standalone ([53b5f94](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/53b5f9482a97497b6f6af174a84bf7b5389ad1b4))
+* use embedded UI button components ([e5c6889](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/e5c6889ab5c89258d1d92bd296cc8732c7d8b40e))
+
+
+
 # 1.0.0 (2023-05-03)
 
 
