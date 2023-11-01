@@ -11,7 +11,7 @@ from pysimplegui_boilerplate.configuration.event_bus_configuration import event_
 # https://www.pysimplegui.org/en/latest/
 
 
-def show() -> None:
+def main() -> None:
     sg.theme("PythonPlus")
     # Inject the layout to the window
     window = sg.Window("Window Title", layout(datetime.now()))
@@ -47,4 +47,5 @@ def on_ok_event(values: dict[str, Any], window: Window) -> None:
 
 if __name__ == "__main__":
     startup()
-    show()
+    main()
+    # PySimpleGUI.main()
