@@ -49,6 +49,8 @@ psutil = "==5.9.6"
 pysimplegui = "==4.60.5"
 # A simple python event bus. https://github.com/seanpar203/event-bus
 event-bus = "==1.0.2"
+# Platform-independent wrapper for platform-dependent APIs. https://pypi.org/project/notify-py/
+plyer = "==2.1.0"
 
 [dev-packages]
 # 🏗 Foundamental dependencies
