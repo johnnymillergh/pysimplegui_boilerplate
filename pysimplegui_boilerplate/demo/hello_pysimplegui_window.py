@@ -3,7 +3,6 @@ from typing import Any
 
 import PySimpleGUI as sg
 from loguru import logger
-from plyer import notification
 from PySimpleGUI import Element, Window
 
 from pysimplegui_boilerplate.__main__ import startup
@@ -44,10 +43,6 @@ def on_submit_event(values: dict[str, Any], window: Window) -> None:
     # Output a message to the window
     window["-OUTPUT-TEXT-"].update(
         f"Hello {values['-INPUT-']}! Thanks for trying PySimpleGUI"
-    )
-    notification.notify(
-        title="Hello PySimpleGUI",
-        message=f"On Submit event: {values['-INPUT-']}! Thanks for trying PySimpleGUI",
     )
 
 
