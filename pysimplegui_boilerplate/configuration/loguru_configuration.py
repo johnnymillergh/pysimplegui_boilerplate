@@ -89,7 +89,7 @@ for key, value in application_conf.get_config("log").items():
 
 
 def retain_log_files() -> None:
-    now = arrow.get()
+    now = arrow.now("local")
     dates = {
         date.format("YYYY-MM-DD")
         for date in Arrow.range("day", now.shift(days=-7), end=now)
