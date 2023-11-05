@@ -177,18 +177,18 @@ Build artifact with macOS or Linux,
 ```shell
 $ pipenv run pyinstaller --windowed --noconsole \
 --add-data "setup.cfg:." \
---add-data "pysimplegui_boilerplate/resources/*:pysimplegui_boilerplate/resources" \
---name pysimplegui_boilerplate-main \
---clean --noconfirm pysimplegui_boilerplate/__main__.py
+--add-data "pysimplegui_boilerplate/resources/:pysimplegui_boilerplate/resources/" \
+--name hello_pysimplegui_window \
+--clean --noconfirm pysimplegui_boilerplate/demo/hello_pysimplegui_window.py
 ```
 
 On Windows,
 ```powershell
 $ pipenv run pyinstaller --windowed --noconsole `
 --add-data "setup.cfg;." `
---add-data "pysimplegui_boilerplate/resources/*;pysimplegui_boilerplate/resources" `
---name pysimplegui_boilerplate-main `
---clean --noconfirm pysimplegui_boilerplate/__main__.py
+--add-data "pysimplegui_boilerplate/resources/;pysimplegui_boilerplate/resources/" `
+--name hello_pysimplegui_window `
+--clean --noconfirm pysimplegui_boilerplate/demo/hello_pysimplegui_window.py
 ```
 
 ### Run Unit Tests

@@ -44,6 +44,7 @@ def on_submit_event(values: dict[str, Any], window: Window) -> None:
     window["-OUTPUT-TEXT-"].update(
         f"Hello {values['-INPUT-']}! Thanks for trying PySimpleGUI"
     )
+    sg.popup_notify(f"On Submit event, got values: {values}", title="Hello PySimpleGUI")
 
 
 if __name__ == "__main__":
