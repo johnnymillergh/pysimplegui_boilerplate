@@ -3,16 +3,23 @@ import os
 import platform
 import sys
 import time
-from datetime import timedelta
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from loguru import logger
+from tzlocal import get_localzone
 
 from pysimplegui_boilerplate.common.common_function import get_module_name
 from pysimplegui_boilerplate.configuration.application_configuration import (
     configure as configure_application,
 )
 from pysimplegui_boilerplate.configuration.application_configuration import setup_cfg
+from pysimplegui_boilerplate.configuration.apscheduler_configuration import (
+    cleanup as apscheduler_clean,
+)
+from pysimplegui_boilerplate.configuration.apscheduler_configuration import (
+    configure as configure_apscheduler,
+)
 from pysimplegui_boilerplate.configuration.event_bus_configuration import (
     configure as configure_event_bus,
 )
@@ -56,6 +63,7 @@ def startup() -> None:
     configure_peewee()
     configure_thread_pool()
     configure_event_bus()
+    configure_apscheduler()
 
     # Initialization
     __init__()
@@ -84,6 +92,7 @@ def finalize() -> None:
     # Shutdown tread pool and other connections
     thread_pool_cleanup()
     email_cleanup()
+    apscheduler_clean()
     update_latest()
     __end_elapsed = time.perf_counter() - __start_time
     logger.info(
@@ -95,7 +104,9 @@ def main() -> None:
     """
     Main function.
     """
-    logger.info(f"Current module: {get_module_name()}")
+    logger.info(
+        f"Current module: {get_module_name()}, tzname: {datetime.now().astimezone().tzname()}, localzone: {get_localzone()}"
+    )
 
 
 if __name__ == "__main__":

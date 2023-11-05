@@ -1,11 +1,9 @@
-from time import sleep
-
 import PySimpleGUI as sg
 from loguru import logger
 from requests import request
 
 from pysimplegui_boilerplate.__main__ import startup
-from pysimplegui_boilerplate.common.asynchronization import async_function
+from pysimplegui_boilerplate.configuration.apscheduler_configuration import scheduler
 
 
 def led_indicator(key: str | None = None, radius: int = 30) -> sg.Graph:
@@ -41,22 +39,19 @@ window = sg.Window(
 )
 
 
-@async_function
 def check_network_status(url: str, window: sg.Window, ui_key: str) -> None:
-    while True:
-        try:
-            response = request(method="GET", url=url, timeout=5)
-            logger.info(f"{url}: {response.status_code}")
-            if response.status_code in (range(200, 299)):
-                set_led(window, ui_key, "green")
-            if response.status_code in (range(300, 399)):
-                set_led(window, ui_key, "yellow")
-            if response.status_code in (range(400, 599)):
-                set_led(window, ui_key, "red")
-        except Exception as e:
-            logger.warning(f"{url} failed, {e}")
+    try:
+        response = request(method="GET", url=url, timeout=5)
+        logger.info(f"{url}: {response.status_code}")
+        if response.status_code in (range(200, 299)):
+            set_led(window, ui_key, "green")
+        if response.status_code in (range(300, 399)):
+            set_led(window, ui_key, "yellow")
+        if response.status_code in (range(400, 599)):
             set_led(window, ui_key, "red")
-        sleep(15)
+    except Exception as e:
+        logger.warning(f"{url} failed, {e}")
+        set_led(window, ui_key, "red")
 
 
 if __name__ == "__main__":
@@ -68,11 +63,24 @@ if __name__ == "__main__":
             break
         if value is None:
             break
-        # set_led(window, "_google_", "green" if random.randint(1, 10) > 5 else "red")
-        # set_led(window, "_bing_", "green" if random.randint(1, 10) > 5 else "red")
         if i == 0:
-            check_network_status("https://www.google.com", window, "_google_")
-            check_network_status("https://www.bing2.com", window, "_bing2_")
-            check_network_status("https://www.bing.com", window, "_bing_")
+            scheduler.add_job(
+                func=check_network_status,
+                trigger="interval",
+                args=("https://www.google.com", window, "_google_"),
+                seconds=15,
+            )
+            scheduler.add_job(
+                func=check_network_status,
+                trigger="interval",
+                args=("https://www.bing2.com", window, "_bing2_"),
+                seconds=15,
+            )
+            scheduler.add_job(
+                func=check_network_status,
+                trigger="interval",
+                args=("https://www.bing.com", window, "_bing_"),
+                seconds=15,
+            )
             i += 1
     window.close()
