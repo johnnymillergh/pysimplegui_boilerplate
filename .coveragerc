@@ -7,6 +7,7 @@ source = pysimplegui_boilerplate
 omit = pysimplegui_boilerplate/__main__.py
     pysimplegui_boilerplate/__init__.py
     *_window.py
+    demo_*.py
     tests/*
 
 [report]

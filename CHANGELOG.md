@@ -1,3 +1,27 @@
+# [2.1](https://github.com/johnnymillergh/pysimplegui_boilerplate/compare/2.0...2.1) (2023-11-05)
+
+
+### Bug Fixes
+
+* **$log:** retain log files by local date ([6ce4ed3](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/6ce4ed3c39fea25a483e9c52382bff3621db9ef4))
+
+
+### Features
+
+* **$PySimpleGUI:** run hello_pysimplegui_window.py standalone ([53b5f94](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/53b5f9482a97497b6f6af174a84bf7b5389ad1b4))
+* add more PySimpleGUI demos ([f3618ab](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/f3618abcf7d60358526904afdc82ce78101ffe27))
+* add PySimpleGUI demo - network status indicator ([5700c0e](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/5700c0ed4e123fc4700b2d077de39e934805aab5))
+* display popup notify with PySimpleGUI ([5d681eb](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/5d681eb3461427087c7ac1d390d69a68f095d111))
+* integrate APScheduler; check network status with APScheduler ([010ae63](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/010ae631c9663bbac4d984b6afd36d805c4a85c1))
+* integrate APScheduler; check network status with APScheduler ([8056453](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/80564539dcf0e31c3a2637bc4bdb7acf46890db8))
+
+
+### Performance Improvements
+
+* **$loguru:** check console or no-console mode before overriding console output ([c3102ed](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/c3102edfcebb577a099d7d1059222cf2dca67f46))
+
+
+
 # [2.0](https://github.com/johnnymillergh/pysimplegui_boilerplate/compare/1.0.0...2.0) (2023-11-01)
 
 
