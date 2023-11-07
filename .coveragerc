@@ -6,7 +6,8 @@ data_file = ./build/.coverage
 source = pysimplegui_boilerplate
 omit = pysimplegui_boilerplate/__main__.py
     pysimplegui_boilerplate/__init__.py
-    python_boilerplate/data_migration/*
+    pysimplegui_boilerplate/data_migration/*
+    pysimplegui_boilerplate/layout/*
     *_window.py
     demo_*.py
     tests/*

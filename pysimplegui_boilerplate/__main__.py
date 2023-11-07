@@ -36,6 +36,9 @@ from pysimplegui_boilerplate.configuration.thread_pool_configuration import (
     configure as configure_thread_pool,
 )
 from pysimplegui_boilerplate.data_migration.data_migration import init_db_data
+from pysimplegui_boilerplate.layout.splash_screen.controller import (
+    main as splash_screen_main,
+)
 from pysimplegui_boilerplate.message.email import cleanup as email_cleanup
 from pysimplegui_boilerplate.message.email import init_smtp
 from pysimplegui_boilerplate.repository.model.startup_log import StartupLog
@@ -109,6 +112,7 @@ def main() -> None:
     logger.info(
         f"Current module: {get_module_name()}, tzname: {datetime.now().astimezone().tzname()}, localzone: {get_localzone()}"
     )
+    splash_screen_main()
 
 
 if __name__ == "__main__":
