@@ -35,8 +35,9 @@ from pysimplegui_boilerplate.configuration.thread_pool_configuration import (
 from pysimplegui_boilerplate.configuration.thread_pool_configuration import (
     configure as configure_thread_pool,
 )
-from pysimplegui_boilerplate.message.email import __init__
+from pysimplegui_boilerplate.data_migration.data_migration import init_db_data
 from pysimplegui_boilerplate.message.email import cleanup as email_cleanup
+from pysimplegui_boilerplate.message.email import init_smtp
 from pysimplegui_boilerplate.repository.model.startup_log import StartupLog
 from pysimplegui_boilerplate.repository.startup_log_repository import (
     retain_startup_log,
@@ -66,7 +67,8 @@ def startup() -> None:
     configure_apscheduler()
 
     # Initialization
-    __init__()
+    init_smtp()
+    init_db_data()
 
     # Saving startup log
     # Cannot save startup log in parallel, because the ThreadPoolExecutor won't be able to start another future
@@ -111,4 +113,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     startup()
-    # main()
+    main()
