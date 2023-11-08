@@ -1,4 +1,7 @@
-![Python Boilerplate Social Image](./pysimplegui_boilerplate.png)
+<div style="text-align: center;">
+<img src="pysimplegui_boilerplate/resources/picture/PySimpleGUI Boilerplate.png" alt="PySimpleGUI Boilerplate">
+</div>
+
 [![GitHub release](https://img.shields.io/github/release/johnnymillergh/pysimplegui_boilerplate.svg)](https://github.com/johnnymillergh/pysimplegui_boilerplate/releases)
 [![Github Actions workflow status](https://github.com/johnnymillergh/pysimplegui_boilerplate/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/johnnymillergh/pysimplegui_boilerplate/actions)
 [![GitHub issues](https://img.shields.io/github/issues/johnnymillergh/pysimplegui_boilerplate)](https://github.com/johnnymillergh/pysimplegui_boilerplate/issues)

@@ -53,8 +53,8 @@ jobs:
           pipenv run pyinstaller --windowed --noconsole \
             --add-data "setup.cfg:." \
             --add-data "pysimplegui_boilerplate/resources/:pysimplegui_boilerplate/resources/" \
-            --name hello_pysimplegui_window \
-            --clean --noconfirm pysimplegui_boilerplate/demo/hello_pysimplegui_window.py
+            --name pysimplegui_boilerplate \
+            --clean --noconfirm pysimplegui_boilerplate/__main__.py
       - name: Display Built Artifacts
         run: |
           du -s -h *
