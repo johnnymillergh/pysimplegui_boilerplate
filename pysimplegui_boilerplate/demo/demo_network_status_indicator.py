@@ -44,15 +44,16 @@ window = sg.Window(
 def check_network_status(url: str, window: sg.Window, ui_key: str) -> None:
     try:
         response = request(method="GET", url=url, timeout=5)
-        logger.info(f"{url}: {response.status_code}")
-        if response.status_code in (range(200, 299)):
-            set_led(window, ui_key, "green")
-        if response.status_code in (range(300, 399)):
-            set_led(window, ui_key, "yellow")
-        if response.status_code in (range(400, 599)):
-            set_led(window, ui_key, "red")
     except Exception as e:
         logger.warning(f"{url} failed, {e}")
+        set_led(window, ui_key, "red")
+        return
+    logger.info(f"{url}: {response.status_code}")
+    if response.status_code in (range(200, 299)):
+        set_led(window, ui_key, "green")
+    if response.status_code in (range(300, 399)):
+        set_led(window, ui_key, "yellow")
+    if response.status_code in (range(400, 599)):
         set_led(window, ui_key, "red")
 
 
