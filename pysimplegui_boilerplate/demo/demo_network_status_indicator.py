@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import PySimpleGUI as sg
 from loguru import logger
 from requests import request
@@ -64,23 +66,27 @@ if __name__ == "__main__":
         if value is None:
             break
         if i == 0:
+            now = datetime.now()
             scheduler.add_job(
                 func=check_network_status,
                 trigger="interval",
                 args=("https://www.google.com", window, "_google_"),
                 seconds=15,
+                next_run_time=now,
             )
             scheduler.add_job(
                 func=check_network_status,
                 trigger="interval",
                 args=("https://www.bing2.com", window, "_bing2_"),
                 seconds=15,
+                next_run_time=now,
             )
             scheduler.add_job(
                 func=check_network_status,
                 trigger="interval",
                 args=("https://www.bing.com", window, "_bing_"),
                 seconds=15,
+                next_run_time=now,
             )
             i += 1
     window.close()
