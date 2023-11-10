@@ -1,3 +1,22 @@
+# [2.1](https://github.com/johnnymillergh/pysimplegui_boilerplate/compare/2.1...3.0) (2023-11-10)
+
+
+### Bug Fixes
+
+* **$log:** retain log files by local date ([6ce4ed3](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/6ce4ed3c39fea25a483e9c52382bff3621db9ef4))
+
+
+### Features
+
+* **$database:** support database init when startup ([9ca0c31](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/9ca0c31784d4a355bab3874334df6126f37d3764))
+* **$layout:** support multi window interaction ([4dae39e](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/4dae39ef0ea64539db574e1eeee09b2b9315e9e0))
+* add PySimpleGUI demo - network status indicator ([5700c0e](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/5700c0ed4e123fc4700b2d077de39e934805aab5))
+* display popup notify with PySimpleGUI ([5d681eb](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/5d681eb3461427087c7ac1d390d69a68f095d111))
+* execute scheduled jobs immediately after adding ([9ddaee7](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/9ddaee7aafe534920d0c80cad5856a393e577785))
+* new design of social profile picture ([b8af0ca](https://github.com/johnnymillergh/pysimplegui_boilerplate/commit/b8af0ca7394cee57eb5d5f870af2da0adc4c021c))
+
+
+
 # [2.1](https://github.com/johnnymillergh/pysimplegui_boilerplate/compare/2.0...2.1) (2023-11-05)
 
 
