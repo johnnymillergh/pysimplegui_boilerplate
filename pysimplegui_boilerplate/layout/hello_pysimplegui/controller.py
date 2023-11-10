@@ -23,7 +23,7 @@ def main() -> None:
         if event == sg.WINDOW_CLOSED or event == "Exit":
             logger.info("Window closed")
             break
-        logger.debug(
+        logger.info(
             f"Emitting event: {event}, values: {values}, window: {current_window}"
         )
         event_bus.emit(event, values, current_window)

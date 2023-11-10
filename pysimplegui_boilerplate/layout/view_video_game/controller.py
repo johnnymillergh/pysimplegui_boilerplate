@@ -35,5 +35,5 @@ def main() -> None:
         event, values = window.read()
         if event == sg.WIN_CLOSED:
             break
-        logger.debug(f"Emitting event: {event}, values: {values}, window: {window}")
+        logger.info(f"Emitting event: {event}, values: {values}, window: {window}")
         event_bus.emit(event, values, window)
