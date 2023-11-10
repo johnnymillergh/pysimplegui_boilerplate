@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import PySimpleGUI as sg
 from loguru import logger
 from requests import request
@@ -42,15 +44,16 @@ window = sg.Window(
 def check_network_status(url: str, window: sg.Window, ui_key: str) -> None:
     try:
         response = request(method="GET", url=url, timeout=5)
-        logger.info(f"{url}: {response.status_code}")
-        if response.status_code in (range(200, 299)):
-            set_led(window, ui_key, "green")
-        if response.status_code in (range(300, 399)):
-            set_led(window, ui_key, "yellow")
-        if response.status_code in (range(400, 599)):
-            set_led(window, ui_key, "red")
     except Exception as e:
         logger.warning(f"{url} failed, {e}")
+        set_led(window, ui_key, "red")
+        return
+    logger.info(f"{url}: {response.status_code}")
+    if response.status_code in (range(200, 299)):
+        set_led(window, ui_key, "green")
+    if response.status_code in (range(300, 399)):
+        set_led(window, ui_key, "yellow")
+    if response.status_code in (range(400, 599)):
         set_led(window, ui_key, "red")
 
 
@@ -64,23 +67,27 @@ if __name__ == "__main__":
         if value is None:
             break
         if i == 0:
+            now = datetime.now()
             scheduler.add_job(
                 func=check_network_status,
                 trigger="interval",
                 args=("https://www.google.com", window, "_google_"),
                 seconds=15,
+                next_run_time=now,
             )
             scheduler.add_job(
                 func=check_network_status,
                 trigger="interval",
                 args=("https://www.bing2.com", window, "_bing2_"),
                 seconds=15,
+                next_run_time=now,
             )
             scheduler.add_job(
                 func=check_network_status,
                 trigger="interval",
                 args=("https://www.bing.com", window, "_bing_"),
                 seconds=15,
+                next_run_time=now,
             )
             i += 1
     window.close()
