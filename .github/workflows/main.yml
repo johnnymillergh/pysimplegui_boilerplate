@@ -64,3 +64,12 @@ jobs:
         continue-on-error: true
       - name: Assert Previous Step Was Failure
         run: echo "Result of smoke-test-py-installer-application was '${{ steps.smoke-test-py-installer-application.outcome }}'"
+  check-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/project-environment-setup
+      - name: Check Versions of Python Packages
+        run: |
+          pipenv run pip list --outdated
+          cat Pipfile
