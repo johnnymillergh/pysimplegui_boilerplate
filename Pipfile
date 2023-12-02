@@ -48,6 +48,8 @@ matplotlib = "==3.8.2"
 psutil = "==5.9.6"
 # Task scheduling library for Python, https://github.com/agronholm/apscheduler
 apscheduler = "==3.10.4"
+# Python humanize functions. https://github.com/python-humanize/humanize
+humanize = "==4.9.0"
 # 🪜 Customization dependencies
 # Python GUIs for Humans. https://github.com/PySimpleGUI/PySimpleGUI
 pysimplegui = "==4.60.5"

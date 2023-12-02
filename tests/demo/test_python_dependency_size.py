@@ -1,6 +1,4 @@
-from pysimplegui_boilerplate.demo.demo_python_dependency_size import (
-    list_python_dependencies,
-)
+from pysimplegui_boilerplate.demo.python_dependency_size import list_python_dependencies
 
 
 def test_list_python_dependencies() -> None:
