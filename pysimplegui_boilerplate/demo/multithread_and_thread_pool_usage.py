@@ -6,7 +6,6 @@ from faker import Faker
 from loguru import logger
 from pandas import DataFrame
 
-from pysimplegui_boilerplate.__main__ import startup
 from pysimplegui_boilerplate.common.asynchronization import async_function
 from pysimplegui_boilerplate.common.common_function import get_data_dir
 from pysimplegui_boilerplate.common.profiling import elapsed_time
@@ -61,5 +60,7 @@ def async_generate_data_frame() -> DataFrame:
 
 
 if __name__ == "__main__":
+    from pysimplegui_boilerplate.__main__ import startup
+
     startup()
     async_generate_data_frame()

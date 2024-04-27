@@ -107,7 +107,7 @@ def make_window(theme: Optional[str] = None) -> sg.Window:
                 autoscroll=True,
                 auto_refresh=True,
             )
-        ]
+        ],
         # [sg.Output(size=(60,15), font='Courier 8', expand_x=True, expand_y=True)]
     ]
 

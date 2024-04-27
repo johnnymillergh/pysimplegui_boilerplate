@@ -13,7 +13,6 @@ from tenacity import (
     wait_fixed,
 )
 
-from pysimplegui_boilerplate.__main__ import startup
 from pysimplegui_boilerplate.common.trace import trace
 
 SUCCESS_RANGE: Final = range(200, 300)
@@ -85,5 +84,7 @@ def customized_retry_logic_function(input_int: int) -> int:
 
 
 if __name__ == "__main__":
+    from pysimplegui_boilerplate.__main__ import startup
+
     startup()
     exception_function_2()
