@@ -3,7 +3,6 @@ from typing import Any
 
 from loguru import logger
 
-from pysimplegui_boilerplate.__main__ import startup
 from pysimplegui_boilerplate.common.asynchronization import async_function_wrapper
 from pysimplegui_boilerplate.common.profiling import async_elapsed_time
 
@@ -51,7 +50,6 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    startup()
     # Run the event loop
     asyncio.run(main())
     logger.info(f"Type of `coroutine3()`: {type(coroutine3)}")

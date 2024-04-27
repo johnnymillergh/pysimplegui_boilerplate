@@ -42,7 +42,7 @@ jobs:
           || echo "Failed to install mypy types"
       - run: pipenv run mypy
       - name: Python Tests with pytest
-        run: LOG_LEVEL=INFO DISPLAY=:0 pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto --benchmark-disable
+        run: LOG_LEVEL=INFO pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto --benchmark-disable
   pyinstaller-test:
     runs-on: ubuntu-latest
     steps:
