@@ -42,7 +42,7 @@ jobs:
           || echo "Failed to install mypy types"
       - run: pipenv run mypy
       - name: Python Tests with pytest
-        run: LOG_LEVEL=INFO pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto
+        run: LOG_LEVEL=INFO pipenv run pytest --cov --cov-fail-under=90 --capture=no --log-cli-level=INFO -n auto --benchmark-disable
   pyinstaller-test:
     runs-on: ubuntu-latest
     steps:
@@ -64,3 +64,20 @@ jobs:
         continue-on-error: true
       - name: Assert Previous Step Was Failure
         run: echo "Result of smoke-test-py-installer-application was '${{ steps.smoke-test-py-installer-application.outcome }}'"
+  check-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/project-environment-setup
+      - name: Check Versions of Python Packages
+        run: |
+          output=$(pipenv run pip list --outdated)
+          if [ -z "$output" ]
+          then
+              echo "🎉 Congrats! Everything is up-to-date"
+          else
+              echo "⚠️ Attention! Outdated dependencies detected"
+              echo "$output"
+          fi
+          echo "Pipfile"
+          cat Pipfile
