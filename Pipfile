@@ -52,7 +52,7 @@ apscheduler = "==3.10.4"
 humanize = "==4.9.0"
 # 🪜 Customization dependencies
 # Python GUIs for Humans. https://github.com/PySimpleGUI/PySimpleGUI
-pysimplegui = "==4.60.5"
+pysimplegui = "==5.0.4"
 # A simple python event bus. https://github.com/seanpar203/event-bus
 event-bus = "==1.0.2"
 
