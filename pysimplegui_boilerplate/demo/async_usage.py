@@ -50,6 +50,9 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
+    from pysimplegui_boilerplate.__main__ import startup
+
+    startup()
     # Run the event loop
     asyncio.run(main())
     logger.info(f"Type of `coroutine3()`: {type(coroutine3)}")

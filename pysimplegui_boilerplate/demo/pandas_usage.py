@@ -7,7 +7,6 @@ from faker import Faker
 from loguru import logger
 from pandas import DataFrame, DatetimeIndex, Series
 
-from pysimplegui_boilerplate.__main__ import startup
 from pysimplegui_boilerplate.common.asynchronization import async_function
 from pysimplegui_boilerplate.common.common_function import (
     get_data_dir,
@@ -132,5 +131,7 @@ def data_generation() -> None:
 
 
 if __name__ == "__main__":
+    from pysimplegui_boilerplate.__main__ import startup
+
     startup()
     look_for_sony_published_games()
